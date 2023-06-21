@@ -91,7 +91,7 @@ def download_ndwi(region):
     new_image = new_image.add(semiNdwiImage)
     semiNdwiMask = semiNdwiMask.multiply(0.5).add(ndwiThreshold.multiply(ndwiThreshold.eq(0.0)))
 
-    folder = 'new_geo_exports'  # Change this to your file destination folder in Google drive
+    folder = 'new_geo_exports_ndwi'  # Change this to your file destination folder in Google drive
     start_date = os.getenv("START_DATE")
     aggregate_function = os.getenv("AGGREGATE_FUNCTION")
     file_name = f'{shape_name}_{aggregate_function}_{start_date}_ndwi_mask'
@@ -111,7 +111,7 @@ def download_ndwi_range(region):
 
     ndwi = image.normalizedDifference(['B3', 'B8']).rename('NDWI_RANGE')
 
-    folder = 'new_geo_exports'  # Change this to your file destination folder in Google drive
+    folder = 'ndwi_range'  # Change this to your file destination folder in Google drive
     start_date = os.getenv("START_DATE")
     aggregate_function = os.getenv("AGGREGATE_FUNCTION")
     file_name = f'{shape_name}_{aggregate_function}_{start_date}_ndwi_range'
@@ -179,8 +179,8 @@ def export_image(image, filename, region, folder):
         image=image,
         driveFolder=folder,
         scale=10,
-        # region=region.geometry(),
-        region=region,
+        region=region.geometry(),
+        # region=region,
         description=unidecode(filename),
         fileFormat='GeoTIFF',
         crs='EPSG:4326',
@@ -226,7 +226,7 @@ def download_sar(region):
 
     sar_image = sar_image.float()
 
-    folder = 'new_geo_exports'  # Change this to your file destination folder in Google drive
+    folder = 'sar_download'  # Change this to your file destination folder in Google drive
     start_date = os.getenv("START_DATE")
     aggregate_function = os.getenv("AGGREGATE_FUNCTION")
     file_name = f'{shape_name}_{aggregate_function}_{start_date}_sar_{polarization}'
@@ -460,9 +460,9 @@ def main():
     utils.download_country_boundaries(country_code, region_admin_level, file_name)
     region = get_region()
     # region = get_area_of_interest('small_sweden')
-    # download_ndwi(region)
+    download_ndwi(region)
     download_sar(region)
-    download_ndwi_range(region)
+    # download_ndwi_range(region)
     # download_sar_vv_plus_vh(region)
     # bulk_export_sar(study_area)
     # bulk_export_ndwi(study_area)

@@ -99,7 +99,7 @@ def full_cycle():
     geoboundary = utils.get_region_boundaries(region_name, file_name)
 
     tiles = geo_utils.get_tiles(region_name, tif_file, geoboundary, patch_size)
-    # print(tiles.columns.values)
+    print(tiles.columns.values)
     export_ndwi_mask_data(tiles, tif_file)
     # tiles['split'] = 'train'
     # num_rows = len(tiles)

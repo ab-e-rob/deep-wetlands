@@ -311,7 +311,7 @@ def full_cycle():
         "orbit_pass": orbit_pass,
     }
 
-    wandb.init(project="test-project", entity="deep-wetlands", config=config)
+    wandb.init(project="deep-wetlands", entity="abigail-robinson", config=config)
     run_name = wandb.run.name
     utils.plant_random_seed(seed)
 
