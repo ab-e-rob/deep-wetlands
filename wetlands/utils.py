@@ -90,13 +90,13 @@ def generate_model_file_name(epochs=None):
 
 def main():
 
-    file_name = '/tmp/sweden.geojson'
-    download_country_boundaries('SWE', 'ADM2', file_name)
-    get_region_boundaries('Sala kommun', file_name)
-
+    # file_name = '/tmp/sweden.geojson'
+    # download_country_boundaries('SWE', 'ADM2', file_name)
+    # get_region_boundaries('Sala kommun', file_name)
+    get_device()
 
 # start = time.time()
-# main()
+main()
 # end = time.time()
 # total_time = end - start
 # print("%s: Total time = %f seconds" % (time.strftime("%Y/%m/%d-%H:%M:%S"), total_time))
